@@ -1,5 +1,3 @@
-import sys
-
 def translate_phrase(dictionary: dict[str, str], phrase: str) -> str:
     """
     Translates a phrase using the provided dictionary.
@@ -15,25 +13,14 @@ def translate_phrase(dictionary: dict[str, str], phrase: str) -> str:
         translated_words.append(dictionary.get(word, word))
     return " ".join(translated_words)
 
-def solve_task_2() -> None:
-    """
-    Reads input and prints the result for Task 2.
-    """
-    try:
-        line = sys.stdin.readline()
-        if not line:
-            return
-        n = int(line.strip())
-        vocab = {}
-        for _ in range(n):
-            line = sys.stdin.readline().strip()
-            if line:
-                key, value = line.split()
-                vocab[key] = value
-        phrase = sys.stdin.readline().strip()
-        print(translate_phrase(vocab, phrase))
-    except ValueError:
-        pass
 
 if __name__ == "__main__":
-    solve_task_2()
+    n = int(input())
+    vocab = {}
+    for _ in range(n):
+        line = input()
+        key, value = line.split()
+        vocab[key] = value
+        
+    input_phrase = input()
+    print(translate_phrase(vocab, input_phrase))
