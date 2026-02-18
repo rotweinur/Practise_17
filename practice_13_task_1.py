@@ -1,5 +1,5 @@
-import sys
 from collections import Counter
+
 
 def get_words_sorted_by_frequency(text: str) -> list[str]:
     """
@@ -11,22 +11,22 @@ def get_words_sorted_by_frequency(text: str) -> list[str]:
     """
     words = text.split()
     counter = Counter(words)
-    sorted_items = sorted(counter.items(), key=lambda x: (-x[1], x[0]))
-    return [item[0] for item in sorted_items]
+    
+    sort_list = []
+    for word, count in counter.items():
+        sort_list.append((-count, word))
+    
+    sort_list.sort()
+    
+    result = []
+    for _, word in sort_list:
+        result.append(word)
+        
+    return result
 
-def solve_task_1() -> None:
-    """
-    Reads input and prints the result for Task 1.
-    """
-    try:
-        input_data = sys.stdin.read().strip()
-        if not input_data:
-            return
-        result = get_words_sorted_by_frequency(input_data)
-        for word in result:
-            print(word)
-    except Exception:
-        pass
 
 if __name__ == "__main__":
-    solve_task_1()
+    input_text = input()
+    sorted_words = get_words_sorted_by_frequency(input_text)
+    for w in sorted_words:
+        print(w)
